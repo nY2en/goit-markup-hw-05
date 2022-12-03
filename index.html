@@ -16,13 +16,13 @@
     <title>WebStudio</title>
 </head>
 <body>
-    <!-- шапка -->
+    <!-- шапка --> 
     <header>
         <div class="container header-flex">
             <nav class="nav">
                 <a href="./index.html" class="logo primary"><span class="logoblue">Web</span>Studio</a>
                 <ul class="site-nav list">
-                    <li class="item"><a href="" class="links color current">Студія</a></li>
+                    <li class="item"><a href="" class="links color current nocolor">Студія</a></li>
                     <li class="item"><a href="./portfolio.html" class="links color">Портфоліо</a></li>
                     <li class="item"><a href="" class="links color">Контакти</a></li>
                 </ul>
@@ -54,7 +54,7 @@
         <section class="hero">
             <div class="container hero-flex">
                 <h1 class="hero-title">Ефективні рішення для вашого бізнесу</h1>
-                <button type="button" class="button">Замовити послугу</button>
+                <button type="button" class="button" data-modal-open>Замовити послугу</button>
             </div>
         </section>
         <!-- головні якості -->
@@ -109,9 +109,30 @@
             <div class="container activity-flex">
                 <h2 class="section-title no-padding">Чим ми займаємося</h2>
                 <ul class="activity list">
-                    <li class="item"><img src="./images/wprocess1.jpg" width="370" height="294" alt="людина працює за планшетом з клавіатурою"></li> 
-                    <li class="item"><img src="./images/wprocess2.jpg" width="370" height="294" alt="людина працює за ноутбуком" ></li>
-                    <li class="item"><img src="./images/wprocess3.jpg"  width="370" height="294" alt="людина працює за планшетом"></li>
+                    <li class="item">
+                        <div class="thumb">
+                            <img src="./images/wprocess1.jpg" width="370" height="294" alt="людина працює за планшетом з клавіатурою">
+                            <div class="title-box">
+                                <h3 class="titles">десктопні додатки</h3>
+                            </div>
+                        </div>
+                    </li> 
+                    <li class="item">
+                        <div class="thumb">
+                            <img src="./images/wprocess2.jpg" width="370" height="294" alt="людина працює за ноутбуком">
+                            <div class="title-box">
+                                <h3 class="titles">мобільні додатки</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="thumb">
+                            <img src="./images/wprocess3.jpg" width="370" height="294" alt="людина працює за планшетом">
+                            <div class="title-box">
+                                <h3 class="titles">дизайнерські рішення</h3>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </section>
@@ -393,6 +414,18 @@
             </div>
         </div>
     </footer>
+    <!-- модалка -->
+    <div class="backdrop is-hidden" data-modal>
+        <div class="modal">
+            <button type="button" class="button-modal" data-modal-close>
+                <svg class="icon">
+                    <use href="./images/sprite.svg#icon-close"></use>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="./js/modal.js"></script>
 </body>
 </html>
 

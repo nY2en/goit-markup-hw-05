@@ -13,12 +13,6 @@
     --contact-links-f: rgba(255, 255, 255, 0.6);
     --button-portfolio-color: rgba(0, 0, 0, 0.15);
     --header-border-color : #ECECEC;
-    --team-border-color-alpha-zero-twelve: rgba(0, 0, 0, 0.12);
-    --team-border-color-alpha-zero-fourteen: rgba(0, 0, 0, 0.14);
-    --team-border-color-alpha-zero-two: rgba(0, 0, 0, 0.2);
-    --button-portfolio-shadow-alpha-zero-one: rgba(0, 0, 0, 0.1);
-    --button-portfolio-shadow-alpha-apha-zerozero-eight: rgba(0, 0, 0, 0.08);
-    --button-portfolio-shadow-alpha-zero-twelve: rgba(0, 0, 0, 0.12);
     --social-networks-icons-color: #AFB1B8;
     --footer-join-us-icons-background: rgba(255, 255, 255, 0.1);
 }   
@@ -55,6 +49,7 @@ a {
 
 h1,h2,h3,h4,h5,h6 {
     margin: 0;
+    font-size: 14px;
 }
 
 p {
@@ -98,6 +93,8 @@ p {
 
     max-width: 100%;
     max-height: 100%;
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* текуща сторінка */
 .site-nav .links.current {
@@ -115,7 +112,7 @@ p {
 /* ефекти мейл/тел */
 .connect-with-us .links:hover,
 .connect-with-us .links:focus {
-    color: var(--accent);
+    color: var(--accent);   
 }
 /* іконки */
 .connect-with-us .icon { 
@@ -131,6 +128,38 @@ p {
 .icon.tel { 
     width: 10px;
     height: 16px;
+}
+/* підкреслення */
+.site-nav .links {
+    position: relative;
+}
+.site-nav .links::after {
+    content: ' ';
+
+    position: absolute;
+    top: 97%;
+    
+    height: 4px;
+    width: 100%;
+    border-radius: 2px;
+    background-color: var(--accent);
+    opacity: 0;
+
+    transform: scaleX(0.3);
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+ .links.current::after {
+    transform: scaleX(1);
+    opacity: 1;
+}
+
+.links:hover::after,
+.links:focus::after{
+    transform: scaleX(1);
+    background-color: var(--accent);
+    opacity: 1;
 }
 
 header {
@@ -162,7 +191,6 @@ header {
 
 /* Герой */
 .hero {
-
     background-color: var(--background-secondary-color);
 
     text-align: center;   
@@ -221,6 +249,8 @@ header {
     padding-right: 32px;
     padding-bottom: 10px;
     padding-left: 32px;
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 }
 /* ховер кнопки */
@@ -289,7 +319,6 @@ header {
 /* Зображення над якостями */
 /* фон */
 .qualities .thumb {
-
     background-color: var(--background-team-color);
     border-radius: 4px;
 
@@ -324,10 +353,35 @@ header {
     margin-right: 30px;
 }
 
-.activity > .item > img {
+
+.activity img {
     display: block;
 }   
+/* текст з фоном на картинках */
+.activity .thumb {
+    position: relative;
+}
 
+.activity .titles {
+    color : var(--white);
+    font-weight: 700;
+    line-height: 1.14;
+    text-transform: uppercase;
+    
+}
+
+.activity .title-box {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+
+    background-color: rgba(47, 48, 58, 0.8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* Наша команда */
 .team {
     background-color: var(--background-team-color);
@@ -364,9 +418,9 @@ header {
 .team-flex > .item {
     background-color: var(--background-primary-color);
 
-    box-shadow: 0px 1px 3px var(--team-border-color-alpha-zero-twelve),
-                0px 1px 1px var(--team-border-color-alpha-zero-fourteen),
-                0px 2px 1px var(--team-border-color-alpha-zero-two);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 
+                0px 1px 1px rgba(0, 0, 0, 0.14), 
+                0px 2px 1px rgba(0, 0, 0, 0.2); 
     border-radius: 0px 0px 4px 4px;
 
 
@@ -380,7 +434,6 @@ header {
 }
 
 .icons-team .link {
-    
     color: inherit;
 
     width: 44px;
@@ -391,6 +444,9 @@ header {
     align-items: center;
     
     border-radius: 50%;
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icons-team .item:not(:last-child) {
@@ -417,7 +473,6 @@ header {
     display: flex;
 }
 .clients .link {
-    
     color: var(--social-networks-icons-color);
 
     width: 170px;
@@ -428,11 +483,13 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients .link:hover,
 .clients .link:focus {
-    border: 1px solid var(--accent);
+    border-color: var(--accent);
 }
 
 .clients .item:not(:last-child) {
@@ -443,10 +500,12 @@ header {
     width: 106px;
     height: 60px;
     fill: currentColor;
+    
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.clients .item:hover .icon,
-.clients .item:focus .icon {
+.clients .link:hover .icon,
+.clients .link:focus .icon {
     fill: var(--accent);
 }
 /* МЕЙН portfolio.html */
@@ -470,6 +529,11 @@ header {
     padding-right: 22px;
     padding-bottom: 6px;
     padding-left: 22px;
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 
@@ -480,9 +544,9 @@ header {
     color: var(--white);
 
     border-radius: 4px;
-    box-shadow: 0px 3px 1px var(--button-portfolio-shadow-alpha-zero-one),
-                0px 1px 2px var(--button-portfolio-shadow-alpha-apha-zerozero-eight),
-                0px 2px 2px var(--button-portfolio-shadow-alpha-zero-twelve);
+    box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 
+                0px 1px 2px rgba(0, 0, 0, 0.08), 
+                0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 /* Проекти */
 .project-title {
@@ -544,13 +608,51 @@ header {
     margin-bottom: 4px;
 }
 
-/* hover */
+.projects .link {
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
 .projects .link:hover,
 .projects .link:focus {
     display: block;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 
                 0px 4px 4px rgba(0, 0, 0, 0.06),
                 1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+/* текст над картками */
+.projects .thumb {
+    position: relative;
+    overflow: hidden;
+}
+
+.projects .overlay-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    transform: translateY(100%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(33, 150, 243, 0.9);
+}
+
+.projects .link:hover .overlay-content {
+    transform: translateY(0);
+}
+
+.projects .overlay-text {
+    font-size: 18px;
+    line-height: 1.56;
+    width: 322px;
+    color: var(--white);
 }
 /* Підвал */
 footer {
@@ -569,6 +671,8 @@ footer {
 .contact-with-us .links {
     color: var(--contact-links-f);
     font-style: normal;
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 }
 .contact-with-us .links:hover,
@@ -624,7 +728,6 @@ address {
 }
 
 .icons-join-us .link {
-    
     color: var(--white);
     background-color: var(--footer-join-us-icons-background);
 
@@ -636,6 +739,8 @@ address {
     align-items: center;
     
     border-radius: 50%;
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icons-join-us .item:not(:last-child) {
@@ -650,6 +755,75 @@ address {
 
 .icons-join-us .link:hover,
 .icons-join-us .link:focus {
-    color: var(--white);
     background-color: var(--accent);
+}
+
+/* модалка */
+ .backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    opacity: 1;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(1);
+    
+    display: flex;
+    min-width: 528px;
+    min-height: 581px;
+    padding: 8px;
+    
+    background-color: var(--white);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 
+                0px 1px 1px rgba(0, 0, 0, 0.14), 
+                0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden .modal {
+    transform: translate(-50%,-50%) scale(1.5);
+}
+
+.button-modal {
+    padding: 0;
+    margin: 0;
+    margin-left:auto;
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);   
+    border-radius: 50%;
+}
+
+.button-modal .icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-modal:hover .icon {
+    fill: var(--accent);
 }
